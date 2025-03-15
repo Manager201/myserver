@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucian Universe</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            background: url('https://source.unsplash.com/1600x900/?galaxy,universe') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            transition: all 0.5s ease-in-out;
+        }
+        #welcome {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: 2px solid blue;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            text-shadow: 0 0 10px blue;
+            box-shadow: 0 0 20px blue;
+        }
+        .btn:hover {
+            background: blue;
+        }
+        #login-form, #options, #error-msg {
+            display: none;
+        }
+        input {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .danger-msg {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: red;
+            padding: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">Welcome to Lucian Universe</div>
+    <button class="btn" onclick="showLogin()">Enter</button>
+    <div id="login-form">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button class="btn" onclick="validateLogin()">Login</button>
+        <p id="error-msg" style="color: red;"></p>
+    </div>
+    <div id="options">
+        <button class="btn" onclick="location.href='http://100.89.63.93/'">Caddy</button>
+        <button class="btn" onclick="location.href='http://100.89.63.93:8096/web/#/home.html'">Jellyfin</button>
+        <button class="btn" onclick="location.href='http://100.89.63.93:81/'">Casa OS</button>
+    </div>
+    <div class="danger-msg">⚠ Unauthorized access denied!</div>
+    <script>
+        function showLogin() {
+            document.getElementById('welcome').style.display = 'none';
+            document.querySelector('.btn').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === "admin" && password === "password") {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('options').style.display = 'block';
+            } else {
+                document.getElementById('error-msg').innerText = 'Incorrect username or password';
+            }
+        }
+    </script>
+</body>
+</html>
